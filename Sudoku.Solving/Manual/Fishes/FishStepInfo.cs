@@ -14,8 +14,9 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// <param name="BaseSets">The base sets.</param>
 	/// <param name="CoverSets">The cover sets.</param>
 	public abstract record FishStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, IReadOnlyList<int> BaseSets,
-		IReadOnlyList<int> CoverSets) : StepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, int Digit,
+		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets
+	) : StepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The names of all fishes by their sizes.

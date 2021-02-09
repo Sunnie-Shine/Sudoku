@@ -16,8 +16,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="ExtraCell">The extra cell.</param>
 	public sealed record BivalueOddagonType1StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, int Digit1, int Digit2,
-		int ExtraCell) : BivalueOddagonStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		in Cells Loop, int Digit1, int Digit2, int ExtraCell
+	) : BivalueOddagonStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.0M;

@@ -11,8 +11,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public sealed record BugType1StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: BugStepInfo(Conclusions, Views)
+	public sealed record BugType1StepInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views
+	) : BugStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugType1;

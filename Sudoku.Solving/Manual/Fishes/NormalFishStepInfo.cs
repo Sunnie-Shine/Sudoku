@@ -36,11 +36,11 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </list>
 	/// </param>
 	public sealed record NormalFishStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
-		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Fins, bool? IsSashimi)
-		: FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, int Digit,
+		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Fins, bool? IsSashimi
+	) : FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
 #if DOUBLE_LAYERED_ASSUMPTION
-		, IHasParentNodeInfo
+	, IHasParentNodeInfo
 #endif
 	{
 		/// <inheritdoc/>

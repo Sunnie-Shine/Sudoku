@@ -14,8 +14,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="Pattern">The pattern.</param>
 	/// <param name="Candidate">The candidate.</param>
 	public sealed record QdpType1StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern, int Candidate)
-		: QdpStepInfo(Conclusions, Views, Pattern)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		in Pattern Pattern, int Candidate
+	) : QdpStepInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.QdpType1;

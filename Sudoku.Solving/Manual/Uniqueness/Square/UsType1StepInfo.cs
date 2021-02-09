@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="DigitsMask">The digits mask.</param>
 	/// <param name="Candidate">Indicates the true candidate.</param>
 	public sealed record UsType1StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
-		int Candidate) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		in Cells Cells, short DigitsMask, int Candidate
+	) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.UsType1;

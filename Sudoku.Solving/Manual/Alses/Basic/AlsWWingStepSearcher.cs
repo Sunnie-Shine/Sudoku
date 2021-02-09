@@ -3,7 +3,6 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Models;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -128,7 +127,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								}
 
 								// Gather highlight cells and candidates.
-								var cellOffsets = new List<DrawingInfo>();
+								var cellOffsets = new List<PaintingPair<int>>();
 								foreach (int cell in map1)
 								{
 									cellOffsets.Add(new(-1, cell));
@@ -138,7 +137,7 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 									cellOffsets.Add(new(-2, cell));
 								}
 
-								var candidateOffsets = new List<DrawingInfo>
+								var candidateOffsets = new List<PaintingPair<int>>
 								{
 									new(0, cpMap[0] * 9 + x),
 									new(0, cpMap[1] * 9 + x)
@@ -163,20 +162,21 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 								accumulator.Add(
 									new AlsWWingStepInfo(
 										conclusions,
-										new View[]
+										new PresentationData[]
 										{
 											new()
 											{
 												Cells = AlsShowRegions ? null : cellOffsets,
 												Candidates = AlsShowRegions ? candidateOffsets : null,
-												Regions = AlsShowRegions
-												? new DrawingInfo[]
-												{
-													new(-1, region1),
-													new(-2, region2),
-													new(0, TrailingZeroCount(conjugatePair.Regions))
-												}
-												: null
+												Regions =
+													AlsShowRegions
+													? new PaintingPair<int>[]
+													{
+														new(-1, region1),
+														new(-2, region2),
+														new(0, TrailingZeroCount(conjugatePair.Regions))
+													}
+													: null
 											}
 										},
 										als1,

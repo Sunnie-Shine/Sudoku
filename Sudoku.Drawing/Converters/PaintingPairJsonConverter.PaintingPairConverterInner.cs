@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace Sudoku.Drawing.Converters
 {
-	partial class PaintingPairConverter
+	partial class PaintingPairJsonConverter
 	{
 		/// <summary>
 		/// Indicates the inner converter.

@@ -13,8 +13,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <param name="Cells">All cells.</param>
 	/// <param name="DigitsMask">All digits mask.</param>
 	public sealed record XrType1StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask)
-		: XrStepInfo(Conclusions, Views, Cells, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		in Cells Cells, short DigitsMask
+	) : XrStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

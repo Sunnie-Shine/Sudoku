@@ -19,12 +19,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="ConjugatePairs">All conjugate pairs.</param>
 	/// <param name="AbsoluteOffset">The absolute offset used in sorting.</param>
 	public sealed record HiddenUrStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<ConjugatePair> ConjugatePairs,
-		int AbsoluteOffset)
-		: UrPlusStepInfo(
-			Conclusions, Views, IsAvoidable ? Technique.HiddenAr : Technique.HiddenUr,
-			Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset)
+		int AbsoluteOffset
+	) : UrPlusStepInfo(
+		Conclusions, Views, IsAvoidable ? Technique.HiddenAr : Technique.HiddenUr,
+		Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset
+	)
 	{
 		/// <inheritdoc/>
 		public override string? Acronym => IsAvoidable ? "HAR" : "HUR";

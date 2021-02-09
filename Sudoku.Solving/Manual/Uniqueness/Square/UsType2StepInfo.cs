@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Square
 	/// <param name="DigitsMask">The digits mask.</param>
 	/// <param name="ExtraDigit">The extra digit.</param>
 	public sealed record UsType2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
-		int ExtraDigit) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		in Cells Cells, short DigitsMask, int ExtraDigit
+	) : UsStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .1M;

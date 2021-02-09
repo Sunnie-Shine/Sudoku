@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Models;
 using Sudoku.Solving.Manual.Extensions;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
@@ -189,7 +188,7 @@ namespace Sudoku.Solving.Manual.Fishes
 
 						// Gather the conclusions and candidates or regions to be highlighted.
 						var conclusions = new List<Conclusion>();
-						List<DrawingInfo> candidateOffsets = new(), regionOffsets = new();
+						List<PaintingPair<int>> candidateOffsets = new(), regionOffsets = new();
 						foreach (int cell in elimMap)
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
@@ -245,12 +244,12 @@ namespace Sudoku.Solving.Manual.Fishes
 		/// </param>
 		/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 		/// <returns>The view.</returns>
-		private static View GetDirectView(
+		private static PresentationData GetDirectView(
 			in SudokuGrid grid, int digit, int[] baseSets, int[] coverSets, in Cells fins, bool searchRow)
 		{
 			// Get the highlight cells (necessary).
-			var cellOffsets = new List<DrawingInfo>();
-			var candidateOffsets = fins.IsEmpty ? null : new List<DrawingInfo>();
+			var cellOffsets = new List<PaintingPair<int>>();
+			var candidateOffsets = fins.IsEmpty ? null : new List<PaintingPair<int>>();
 			foreach (int baseSet in baseSets)
 			{
 				foreach (int cell in RegionMaps[baseSet])

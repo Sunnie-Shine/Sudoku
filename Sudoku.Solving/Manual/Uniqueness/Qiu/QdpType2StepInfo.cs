@@ -14,8 +14,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="Pattern">The pattern.</param>
 	/// <param name="ExtraDigit">The extra digit.</param>
 	public sealed record QdpType2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern, int ExtraDigit)
-		: QdpStepInfo(Conclusions, Views, Pattern)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		in Pattern Pattern, int ExtraDigit
+	) : QdpStepInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .1M;

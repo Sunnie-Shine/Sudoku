@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Models;
+using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Extensions;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -163,8 +163,8 @@ namespace Sudoku.Solving.Manual.Exocets
 		/// <returns>All mirror eliminations.</returns>
 		protected unsafe (Elimination Target, Elimination Mirror) CheckMirror(
 			in SudokuGrid grid, int target, int target2, short lockedNonTarget, short baseCandidateMask,
-			in Cells mirror, int x, int onlyOne, IList<DrawingInfo> cellOffsets,
-			IList<DrawingInfo> candidateOffsets)
+			in Cells mirror, int x, int onlyOne, IList<PaintingPair<int>> cellOffsets,
+			IList<PaintingPair<int>> candidateOffsets)
 		{
 			Candidates targetElims = Candidates.Empty, mirrorElims = Candidates.Empty;
 			int[] offsets = mirror.ToArray();

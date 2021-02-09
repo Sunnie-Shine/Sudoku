@@ -13,8 +13,9 @@ namespace Sudoku.Solving.Manual.RankTheory
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
 	public abstract record BivalueOddagonStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop, int Digit1, int Digit2)
-		: RankTheoryStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, in Cells Loop,
+		int Digit1, int Digit2
+	) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public virtual bool Equals(BivalueOddagonStepInfo? other) =>

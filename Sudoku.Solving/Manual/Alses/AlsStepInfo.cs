@@ -10,8 +10,9 @@ namespace Sudoku.Solving.Manual.Alses
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public abstract record AlsStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: StepInfo(Conclusions, Views)
+	public abstract record AlsStepInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views
+	) : StepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;

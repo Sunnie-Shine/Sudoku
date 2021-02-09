@@ -17,8 +17,9 @@ namespace Sudoku.Solving.Manual.Wings.Regular
 	/// <param name="DigitsMask">The mask of all digits used.</param>
 	/// <param name="Cells">The cells used.</param>
 	public sealed record RegularWingStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot,
-		int PivotCandidatesCount, short DigitsMask, IReadOnlyList<int> Cells) : WingStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, int Pivot,
+		int PivotCandidatesCount, short DigitsMask, IReadOnlyList<int> Cells
+	) : WingStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty rating.

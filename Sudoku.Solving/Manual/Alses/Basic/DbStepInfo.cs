@@ -16,8 +16,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <param name="Pivot">The pivot cell.</param>
 	/// <param name="Alses">All ALSes used.</param>
 	public sealed record DbStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Pivot,
-		IReadOnlyDictionary<int, Als> Alses) : AlsStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, int Pivot,
+		IReadOnlyDictionary<int, Als> Alses
+	) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// Indicates how many petals used.

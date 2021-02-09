@@ -18,9 +18,10 @@ namespace Sudoku.Solving.Manual.RankTheory
 	/// <param name="ColumnCells">The column cells map.</param>
 	/// <param name="BlockCells">The block cells map.</param>
 	public sealed record Sdc3dStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
 		short RowDigitsMask, short ColumnDigitsMask, short BlockDigitsMask,
-		in Cells RowCells, in Cells ColumnCells, in Cells BlockCells) : RankTheoryStepInfo(Conclusions, Views)
+		in Cells RowCells, in Cells ColumnCells, in Cells BlockCells
+	) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.5M;

@@ -22,10 +22,11 @@ namespace Sudoku.Solving.Manual.RankTheory
 	/// <param name="LineCells">The map of line cells.</param>
 	/// <param name="IntersectionCells">The map of intersection cells.</param>
 	public sealed record SdcStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
 		int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
 		bool IsCannibalistic, short IsolatedDigitsMask, in Cells BlockCells, in Cells LineCells,
-		in Cells IntersectionCells) : RankTheoryStepInfo(Conclusions, Views)
+		in Cells IntersectionCells
+	) : RankTheoryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.0M + IsolatedExtraDifficulty + CannibalismExtraDifficulty;

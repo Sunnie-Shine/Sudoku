@@ -13,8 +13,8 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <param name="Cell">The cell.</param>
 	/// <param name="Digit">The digit.</param>
 	public abstract record SingleStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit)
-		: StepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, int Cell, int Digit
+	) : StepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;

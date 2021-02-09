@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Loop">The loop.</param>
 	/// <param name="ExtraDigit">The extra digit.</param>
 	public sealed record UlType2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in Cells Loop, int ExtraDigit) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Digit1, int Digit2, in Cells Loop, int ExtraDigit
+	) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
 		/// <inheritdoc/>
 		public override int Type => 2;

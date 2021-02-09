@@ -12,8 +12,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="Views">All views.</param>
 	/// <param name="Pattern">The pattern.</param>
 	public abstract record QdpStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern)
-		: UniquenessStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, in Pattern Pattern
+	) : UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.8M;

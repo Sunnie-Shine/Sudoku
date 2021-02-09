@@ -7,44 +7,47 @@ namespace Sudoku.Drawing
 	/// <summary>
 	/// This is a data structure that stores the presentation data when drawing onto a picture.
 	/// </summary>
+	/// <remarks>
+	/// In the code, a presentation data instance can be also named as a <c>view</c>.
+	/// </remarks>
 	public sealed class PresentationData
 	{
 		/// <summary>
 		/// The back field of <see cref="Cells"/>.
 		/// </summary>
 		/// <seealso cref="Cells"/>
-		private ICollection<PaintingPair<int>>? _cells;
+		private IList<PaintingPair<int>>? _cells;
 
 		/// <summary>
 		/// The back field of <see cref="Candidates"/>.
 		/// </summary>
 		/// <seealso cref="Candidates"/>
-		private ICollection<PaintingPair<int>>? _candidates;
+		private IList<PaintingPair<int>>? _candidates;
 
 		/// <summary>
 		/// The back field of <see cref="Regions"/>.
 		/// </summary>
 		/// <seealso cref="Regions"/>
-		private ICollection<PaintingPair<int>>? _regions;
+		private IList<PaintingPair<int>>? _regions;
 
 		/// <summary>
 		/// The back field of <see cref="Links"/>.
 		/// </summary>
 		/// <seealso cref="Links"/>
-		private ICollection<PaintingPair<Link>>? _links;
+		private IList<PaintingPair<Link>>? _links;
 
 		/// <summary>
 		/// The back field of <see cref="DirectLines"/>.
 		/// </summary>
 		/// <seealso cref="DirectLines"/>
-		private ICollection<PaintingPair<(Cells Start, Cells End)>>? _directLines;
+		private IList<PaintingPair<(Cells Start, Cells End)>>? _directLines;
 
 
 		/// <summary>
 		/// The cell information.
 		/// </summary>
 		/// <value>The value you want to set.</value>
-		public ICollection<PaintingPair<int>>? Cells
+		public IList<PaintingPair<int>>? Cells
 		{
 			get => _cells;
 
@@ -60,7 +63,7 @@ namespace Sudoku.Drawing
 		/// The candidate information.
 		/// </summary>
 		/// <value>The value you want to set.</value>
-		public ICollection<PaintingPair<int>>? Candidates
+		public IList<PaintingPair<int>>? Candidates
 		{
 			get => _candidates;
 
@@ -76,7 +79,7 @@ namespace Sudoku.Drawing
 		/// The region information.
 		/// </summary>
 		/// <value>The value you want to set.</value>
-		public ICollection<PaintingPair<int>>? Regions
+		public IList<PaintingPair<int>>? Regions
 		{
 			get => _regions;
 
@@ -92,7 +95,7 @@ namespace Sudoku.Drawing
 		/// The link information.
 		/// </summary>
 		/// <value>The value you want to set.</value>
-		public ICollection<PaintingPair<Link>>? Links
+		public IList<PaintingPair<Link>>? Links
 		{
 			get => _links;
 
@@ -108,7 +111,7 @@ namespace Sudoku.Drawing
 		/// The direct line information.
 		/// </summary>
 		/// <value>The value you want to set.</value>
-		public ICollection<PaintingPair<(Cells Start, Cells End)>>? DirectLines
+		public IList<PaintingPair<(Cells Start, Cells End)>>? DirectLines
 		{
 			get => _directLines;
 
@@ -154,15 +157,27 @@ namespace Sudoku.Drawing
 		/// <param name="links">(<see langword="out"/> parameter) The links.</param>
 		/// <param name="directLines">(<see langword="out"/> parameter) The direct lines.</param>
 		public void Deconstruct(
-			out ICollection<PaintingPair<int>>? cells, out ICollection<PaintingPair<int>>? candidates,
-			out ICollection<PaintingPair<int>>? regions, out ICollection<PaintingPair<Link>>? links,
-			out ICollection<PaintingPair<(Cells Start, Cells End)>>? directLines)
+			out IList<PaintingPair<int>>? cells, out IList<PaintingPair<int>>? candidates,
+			out IList<PaintingPair<int>>? regions, out IList<PaintingPair<Link>>? links,
+			out IList<PaintingPair<(Cells Start, Cells End)>>? directLines)
 		{
 			cells = Cells;
 			candidates = Candidates;
 			regions = Regions;
 			links = Links;
 			directLines = DirectLines;
+		}
+
+		/// <summary>
+		/// To clear the view.
+		/// </summary>
+		public void Clear()
+		{
+			Cells = null;
+			Candidates = null;
+			Regions = null;
+			Links = null;
+			DirectLines = null;
 		}
 
 		/// <summary>
@@ -331,11 +346,33 @@ namespace Sudoku.Drawing
 					RegionsChanged?.Invoke(Regions);
 					return true;
 				}
-				case nameof(Links) when value is PaintingPair<Link> i && Links is not null:
+				case nameof(Links) when Links is not null:
 				{
-					Links.Remove(i);
-					LinksChanged?.Invoke(Links);
-					return true;
+					switch (value)
+					{
+						case int i:
+						{
+							for (int z = 0; z < Links.Count; z++)
+							{
+								if (Links[z].Value.StartCandidate == i)
+								{
+									Links.RemoveAt(z);
+									LinksChanged?.Invoke(Links);
+									return true;
+								}
+							}
+
+							return false;
+						}
+						case PaintingPair<Link> i:
+						{
+							Links.Remove(i);
+							LinksChanged?.Invoke(Links);
+							return true;
+						}
+					}
+
+					return false;
 				}
 				case nameof(DirectLines) when value is PaintingPair<(Cells, Cells)> i && DirectLines is not null:
 				{

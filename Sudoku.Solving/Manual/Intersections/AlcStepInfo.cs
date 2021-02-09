@@ -17,9 +17,9 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <param name="TargetCells">All target cells.</param>
 	/// <param name="HasValueCell">Indicates whether the current ALC contains value cells.</param>
 	public sealed record AlcStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, short DigitsMask,
-		in Cells BaseCells, in Cells TargetCells, bool HasValueCell)
-		: IntersectionStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, short DigitsMask,
+		in Cells BaseCells, in Cells TargetCells, bool HasValueCell
+	) : IntersectionStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// Indicates the size.

@@ -28,13 +28,15 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="LineCells">The line cells.</param>
 	/// <param name="IntersectionCells">The intersection cells.</param>
 	public sealed record UrWithSdcStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		int[] Cells, bool IsAvoidable, int AbsoluteOffset, int Block, int Line, short BlockMask,
-		short LineMask, short IntersectionMask, bool IsCannibalistic, short IsolatedDigitsMask,
-		in Cells BlockCells, in Cells LineCells, in Cells IntersectionCells)
-		: UrStepInfo(
-			Conclusions, Views, IsAvoidable ? Technique.ArSdc : Technique.UrSdc,
-			Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset,
+		int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
+		bool IsCannibalistic, short IsolatedDigitsMask,
+		in Cells BlockCells, in Cells LineCells, in Cells IntersectionCells
+	) : UrStepInfo(
+		Conclusions, Views, IsAvoidable ? Technique.ArSdc : Technique.UrSdc,
+		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset
+	)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

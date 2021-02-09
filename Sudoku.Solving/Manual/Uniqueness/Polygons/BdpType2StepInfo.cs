@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="DigitsMask">The digits mask.</param>
 	/// <param name="ExtraDigit">The extra digit.</param>
 	public sealed record BdpType2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Map, short DigitsMask,
-		int ExtraDigit) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		in Cells Map, short DigitsMask, int ExtraDigit
+	) : BdpStepInfo(Conclusions, Views, Map, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.4M;

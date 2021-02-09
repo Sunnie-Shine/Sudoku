@@ -18,9 +18,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Extended
 	/// <param name="ExtraDigitsMask">All extra digits mask.</param>
 	/// <param name="Region">The region.</param>
 	public sealed record XrType3StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells, short DigitsMask,
-		IReadOnlyList<int> ExtraCells, short ExtraDigitsMask, int Region)
-		: XrStepInfo(Conclusions, Views, Cells, DigitsMask)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, in Cells Cells,
+		short DigitsMask, IReadOnlyList<int> ExtraCells, short ExtraDigitsMask, int Region
+	) : XrStepInfo(Conclusions, Views, Cells, DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .1M * PopCount((uint)ExtraDigitsMask);

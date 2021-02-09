@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Sudoku.Data;
 using Sudoku.DocComments;
-using Sudoku.Models;
+using Sudoku.Drawing;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -265,8 +265,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// <param name="list">The list to check.</param>
 		/// <returns>A <see cref="bool"/> result.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private unsafe bool IsIncompleteUr(IEnumerable<DrawingInfo> list) =>
-			!_allowIncompleteUr && list.Count(static pair => pair.Id == 0) != 8;
+		private unsafe bool IsIncompleteUr(IEnumerable<PaintingPair<int>> list) =>
+			!_allowIncompleteUr && list.Count(static pair => pair.PaletteColorIndex == 0) != 8;
 
 		/// <summary>
 		/// Get a cell that can't see each other.
@@ -318,9 +318,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		/// </summary>
 		/// <param name="urCells">The all UR cells used.</param>
 		/// <returns>The list of highlight cells.</returns>
-		private static IReadOnlyList<DrawingInfo> GetHighlightCells(int[] urCells)
+		private static IReadOnlyList<PaintingPair<int>> GetHighlightCells(int[] urCells)
 		{
-			var result = new DrawingInfo[4];
+			var result = new PaintingPair<int>[4];
 			for (int i = 0; i < 4; i++)
 			{
 				result[i] = new(0, urCells[i]);

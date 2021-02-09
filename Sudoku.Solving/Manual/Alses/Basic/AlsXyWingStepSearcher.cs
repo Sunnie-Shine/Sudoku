@@ -3,7 +3,6 @@ using System.Extensions;
 using Sudoku.Data;
 using Sudoku.DocComments;
 using Sudoku.Drawing;
-using Sudoku.Models;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.FastProperties;
 
@@ -154,8 +153,8 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							}
 
 							// Record highlight candidates and cells.
-							var cellOffsets = new List<DrawingInfo>();
-							var candidateOffsets = new List<DrawingInfo>();
+							var cellOffsets = new List<PaintingPair<int>>();
+							var candidateOffsets = new List<PaintingPair<int>>();
 							foreach (int cell in aMap)
 							{
 								short mask = grid.GetCandidates(cell);
@@ -212,14 +211,14 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 							accumulator.Add(
 								new AlsXyWingStepInfo(
 									conclusions,
-									new View[]
+									new PresentationData[]
 									{
 										new()
 										{
 											Cells = AlsShowRegions ? null : cellOffsets,
 											Candidates =AlsShowRegions ? candidateOffsets : null,
 											Regions = AlsShowRegions
-											? new DrawingInfo[]
+											? new PaintingPair<int>[]
 											{
 												new(-1, aRegion), new(-2, bRegion), new(-3, cRegion)
 											}

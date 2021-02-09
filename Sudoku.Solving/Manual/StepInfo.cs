@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public abstract record StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
+	public abstract record StepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views)
 	{
 		/// <summary>
 		/// The names of all subsets by their sizes.
@@ -146,7 +146,7 @@ namespace Sudoku.Solving.Manual
 		/// <param name="views">(<see langword="out"/> parameter) All views.</param>
 		public void Deconstruct(
 			out string name, out decimal difficulty, out DifficultyLevel difficultyLevel,
-			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<View> views)
+			out IReadOnlyList<Conclusion> conclusions, out IReadOnlyList<PresentationData> views)
 		{
 			name = Name;
 			difficulty = Difficulty;

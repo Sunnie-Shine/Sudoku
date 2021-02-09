@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Digit2">The digit 2.</param>
 	/// <param name="Loop">The loop.</param>
 	public abstract record UlStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in Cells Loop) : UniquenessStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Digit1, int Digit2, in Cells Loop
+	) : UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty extra.
@@ -30,7 +31,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		public abstract int Type { get; }
 
 		/// <inheritdoc/>
-		public sealed override decimal Difficulty => BaseDifficulty + ExtraDifficulty[Loop.Count >> 1];
+		public sealed override decimal Difficulty => BaseDifficulty + ((Loop.Count >> 1) - 2) / 10.0M;
 
 		/// <inheritdoc/>
 		public sealed override string Name => base.Name;

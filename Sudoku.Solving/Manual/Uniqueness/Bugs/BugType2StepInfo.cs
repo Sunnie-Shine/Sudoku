@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -14,21 +15,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Digit">The digit.</param>
 	/// <param name="Cells">All cell offsets.</param>
 	public sealed record BugType2StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, IReadOnlyList<int> Cells)
-		: BugStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Digit, IReadOnlyList<int> Cells
+	) : BugStepInfo(Conclusions, Views)
 	{
-		/// <summary>
-		/// The table of extra difficulty values.
-		/// </summary>
-		private static readonly decimal[] ExtraDifficulty =
-		{
-			.1M, .2M, .2M, .3M, .3M, .3M, .4M, .4M, .4M, .4M,
-			.5M, .5M, .5M, .5M, .5M, .6M, .6M, .6M, .6M, .6M
-		};
-
-
 		/// <inheritdoc/>
-		public override decimal Difficulty => base.Difficulty + ExtraDifficulty[Cells.Count - 1];
+		public override decimal Difficulty =>
+			base.Difficulty + (int)(Math.Sqrt(2 * (Cells.Count - 1)) + .5) / 10M;
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode => Technique.BugType2;

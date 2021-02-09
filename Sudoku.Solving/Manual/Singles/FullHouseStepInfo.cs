@@ -13,8 +13,8 @@ namespace Sudoku.Solving.Manual.Singles
 	/// <param name="Cell">The cell.</param>
 	/// <param name="Digit">The digit.</param>
 	public sealed record FullHouseStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Cell, int Digit)
-		: SingleStepInfo(Conclusions, Views, Cell, Digit)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, int Cell, int Digit
+	) : SingleStepInfo(Conclusions, Views, Cell, Digit)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 1.0M;

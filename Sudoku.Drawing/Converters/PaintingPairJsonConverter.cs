@@ -9,7 +9,7 @@ namespace Sudoku.Drawing.Converters
 	/// Indicates a <see cref="PaintingPair{T}"/> JSON converter.
 	/// </summary>
 	/// <seealso cref="PaintingPair{T}"/>
-	public sealed partial class PaintingPairConverter : JsonConverterFactory
+	public sealed partial class PaintingPairJsonConverter : JsonConverterFactory
 	{
 		/// <inheritdoc/>
 		public override bool CanConvert(Type typeToConvert)

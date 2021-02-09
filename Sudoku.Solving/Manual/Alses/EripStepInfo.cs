@@ -17,8 +17,9 @@ namespace Sudoku.Solving.Manual.Alses
 	/// <param name="Digit1">The digit 1.</param>
 	/// <param name="Digit2">The digit 2.</param>
 	public sealed record EripStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int StartCell, int EndCell,
-		int Region, int Digit1, int Digit2) : AlsStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int StartCell, int EndCell, int Region, int Digit1, int Digit2
+	) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 6.0M;

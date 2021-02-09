@@ -22,10 +22,10 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="XyCell">The cell that only contains X and Y digit.</param>
 	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record Ur2DOr3XStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
 		Technique TechniqueCode2, int Digit1, int Digit2, int[] Cells, bool IsAvoidable,
-		int XDigit, int YDigit, int XyCell, int AbsoluteOffset)
-		: UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		int XDigit, int YDigit, int XyCell, int AbsoluteOffset
+	) : UrStepInfo(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.7M;
@@ -41,8 +41,8 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 		protected override string GetAdditional()
 		{
 			string xyCellStr = new Cells { XyCell }.ToString();
-			return
-				$"X = {(XDigit + 1).ToString()}, Y = {(YDigit + 1).ToString()} and a bi-value cell {xyCellStr}";
+			string xDigitStr = (XDigit + 1).ToString(), yDigitStr = (YDigit + 1).ToString();
+			return $"X = {xDigitStr}, Y = {yDigitStr} and a bi-value cell {xyCellStr}";
 		}
 	}
 }

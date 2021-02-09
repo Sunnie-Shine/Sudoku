@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Extensions;
 using Sudoku.Data;
-using Sudoku.Models;
+using Sudoku.Drawing;
 using Sudoku.Solving.Manual.Chaining;
 
 namespace Sudoku.Solving.Manual.Extensions
@@ -21,9 +21,9 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// default value is <see langword="false"/>.
 		/// </param>
 		/// <returns>The candidate offsets.</returns>
-		public static IList<DrawingInfo> GetCandidateOffsets(this in Node target, bool simpleChain = false)
+		public static IList<PaintingPair<int>> GetCandidateOffsets(this in Node target, bool simpleChain = false)
 		{
-			var result = new List<DrawingInfo>();
+			var result = new List<PaintingPair<int>>();
 			var chain = target.Chain;
 			var (pCandidate, _) = chain[0];
 			if (!simpleChain)
@@ -60,9 +60,9 @@ namespace Sudoku.Solving.Manual.Extensions
 		/// draw the AIC, the elimination weak links don't need drawing.
 		/// </param>
 		/// <returns>The link.</returns>
-		public static IReadOnlyList<Link> GetLinks(this in Node target, bool showAllLinks = false)
+		public static IReadOnlyList<PaintingPair<Link>> GetLinks(this in Node target, bool showAllLinks = false)
 		{
-			var result = new List<Link>();
+			var result = new List<PaintingPair<Link>>();
 			var chain = target.Chain;
 			for (int i = showAllLinks ? 0 : 1, count = chain.Count - (showAllLinks ? 0 : 2); i < count; i++)
 			{
@@ -73,14 +73,16 @@ namespace Sudoku.Solving.Manual.Extensions
 					var (prCandidate, prIsOn) = p.Parents![j];
 					result.Add(
 						new(
-							pCandidate,
-							prCandidate,
-							(prIsOn, pIsOn) switch
-							{
-								(false, true) => LinkType.Strong,
-								(true, false) => LinkType.Weak,
-								_ => LinkType.Default
-							}));
+							0,
+							new(
+								pCandidate,
+								prCandidate,
+								(prIsOn, pIsOn) switch
+								{
+									(false, true) => LinkType.Strong,
+									(true, false) => LinkType.Weak,
+									_ => LinkType.Default
+								})));
 				}
 			}
 

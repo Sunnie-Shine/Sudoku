@@ -22,12 +22,13 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="IsNaked">Indicates whether the subset is naked.</param>
 	///  <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record UrType3StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
 		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, IReadOnlyList<int> ExtraDigits,
-		IReadOnlyList<int> ExtraCells, int Region, bool IsNaked, int AbsoluteOffset)
-		: UrStepInfo(
-			Conclusions, Views, IsAvoidable ? Technique.ArType3 : Technique.UrType3,
-			Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		IReadOnlyList<int> ExtraCells, int Region, bool IsNaked, int AbsoluteOffset
+	) : UrStepInfo(
+		Conclusions, Views, IsAvoidable ? Technique.ArType3 : Technique.UrType3,
+		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset
+	)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => BaseDifficulty + SizeExtraDifficulty;

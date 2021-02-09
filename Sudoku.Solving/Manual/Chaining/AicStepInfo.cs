@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -17,9 +18,9 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="YEnabled">Indicates whether the chain is enabled Y strong relations.</param>
 	/// <param name="Target">The target node.</param>
 	public sealed record AicStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool XEnabled, bool YEnabled,
-		in Node Target)
-		: ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		bool XEnabled, bool YEnabled, in Node Target
+	) : ChainingStepInfo(Conclusions, Views, XEnabled, YEnabled, default, default, default, default)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>
@@ -208,7 +209,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string chainStr = new LinkCollection(Views[0].Links!).ToString();
+			string chainStr = new LinkCollection(from pair in Views[0].Links! select pair.Value).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {chainStr} => {elimStr}";
 		}

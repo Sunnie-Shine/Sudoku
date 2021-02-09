@@ -14,8 +14,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <param name="Views">All views.</param>
 	/// <param name="Cells">Indicates the cells used.</param>
 	public sealed record AlsNetStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Cells)
-		: MslsStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, in Cells Cells
+	) : MslsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 9.4M + (decimal)Floor((Sqrt(1 + 8 * Cells.Count) - 1) / 2) * .1M;

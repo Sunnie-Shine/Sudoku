@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="Loop">The loop.</param>
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record UlType4StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in Cells Loop, in ConjugatePair ConjugatePair) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Digit1, int Digit2, in Cells Loop, in ConjugatePair ConjugatePair
+	) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
 		/// <inheritdoc/>
 		public override int Type => 4;
@@ -33,8 +34,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 		}
 
 		/// <inheritdoc/>
-		public bool Equals(UlType4StepInfo? other) =>
-			base.Equals(other) && ConjugatePair == other.ConjugatePair;
+		public bool Equals(UlType4StepInfo? other) => base.Equals(other) && ConjugatePair == other.ConjugatePair;
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => base.GetHashCode();

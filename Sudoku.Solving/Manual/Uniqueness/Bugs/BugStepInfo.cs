@@ -9,8 +9,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public abstract record BugStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: UniquenessStepInfo(Conclusions, Views)
+	public abstract record BugStepInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views
+	) : UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override string? Acronym => "BUG";

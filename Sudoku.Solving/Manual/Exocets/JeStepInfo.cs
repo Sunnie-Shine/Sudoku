@@ -15,10 +15,10 @@ namespace Sudoku.Solving.Manual.Exocets
 	/// <param name="LockedMemberR">The locked member R.</param>
 	/// <param name="Eliminations">All eliminations.</param>
 	public sealed record JeStepInfo(
-		IReadOnlyList<View> Views, in Pattern Exocet, IEnumerable<int> Digits,
+		IReadOnlyList<PresentationData> Views, in Pattern Exocet, IEnumerable<int> Digits,
 		IEnumerable<int>? LockedMemberQ, IEnumerable<int>? LockedMemberR,
-		IReadOnlyList<Elimination> Eliminations)
-		: ExocetStepInfo(Views, Exocet, Digits, LockedMemberQ, LockedMemberR, Eliminations)
+		IReadOnlyList<Elimination> Eliminations
+	) : ExocetStepInfo(Views, Exocet, Digits, LockedMemberQ, LockedMemberR, Eliminations)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty =>

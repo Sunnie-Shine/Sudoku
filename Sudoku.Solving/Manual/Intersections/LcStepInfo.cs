@@ -18,10 +18,11 @@ namespace Sudoku.Solving.Manual.Intersections
 	/// <param name="BaseSet">The base region.</param>
 	/// <param name="CoverSet">The cover region.</param>
 	public sealed record LcStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, int BaseSet, int CoverSet)
-		: IntersectionStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Digit, int BaseSet, int CoverSet
+	) : IntersectionStepInfo(Conclusions, Views)
 #if DOUBLE_LAYERED_ASSUMPTION
-		, IHasParentNodeInfo
+	, IHasParentNodeInfo
 #endif
 	{
 		/// <inheritdoc/>

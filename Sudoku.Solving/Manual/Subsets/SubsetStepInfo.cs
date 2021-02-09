@@ -14,8 +14,9 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="Cells">All cells used.</param>
 	/// <param name="Digits">All digits used.</param>
 	public abstract record SubsetStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, in Cells Cells, IReadOnlyList<int> Digits) : StepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Region, in Cells Cells, IReadOnlyList<int> Digits
+	) : StepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// Indicates the size.

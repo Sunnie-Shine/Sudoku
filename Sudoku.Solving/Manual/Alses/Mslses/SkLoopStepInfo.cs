@@ -13,8 +13,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 	/// <param name="Views">All views.</param>
 	/// <param name="Cells">All cells used.</param>
 	public sealed record SkLoopStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Cells)
-		: MslsStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, IReadOnlyList<int> Cells
+	) : MslsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 9.6M;
@@ -23,7 +23,8 @@ namespace Sudoku.Solving.Manual.Alses.Mslses
 		public override string? Acronym => "SK-Loop";
 
 		/// <inheritdoc/>
-		public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;
+		public override TechniqueTags TechniqueTags =>
+			base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;
 
 		/// <inheritdoc/>
 		public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

@@ -44,7 +44,7 @@ namespace Sudoku.Drawing.Converters
 					case JsonTokenType.StartObject:
 					{
 						Type type = inst!.GetType().GenericTypeArguments[0];
-						var converter = options.GetConverter(typeof(PaintingPairConverter));
+						var converter = options.GetConverter(typeof(PaintingPairJsonConverter));
 						switch (inst)
 						{
 							case List<PaintingPair<int>>:
@@ -86,13 +86,13 @@ namespace Sudoku.Drawing.Converters
 				DirectLines = assign(directLines)
 			};
 
-			static ICollection<T>? assign<T>(List<T> z) => z.Count == 0 ? null : z;
+			static IList<T>? assign<T>(List<T> z) => z.Count == 0 ? null : z;
 		}
 
 		/// <inheritdoc/>
 		public override void Write(Utf8JsonWriter writer, PresentationData value, JsonSerializerOptions options)
 		{
-			var converter = options.GetConverter(typeof(PaintingPairConverter));
+			var converter = options.GetConverter(typeof(PaintingPairJsonConverter));
 
 			writer.WriteStartObject();
 

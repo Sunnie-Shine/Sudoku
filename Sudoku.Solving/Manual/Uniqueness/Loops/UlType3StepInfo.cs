@@ -16,9 +16,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Loops
 	/// <param name="SubsetDigitsMask">The subset digits mask.</param>
 	/// <param name="SubsetCells">The subset cells.</param>
 	public sealed record UlType3StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit1, int Digit2,
-		in Cells Loop, short SubsetDigitsMask, IReadOnlyList<int> SubsetCells)
-		: UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Digit1, int Digit2, in Cells Loop, short SubsetDigitsMask, IReadOnlyList<int> SubsetCells
+	) : UlStepInfo(Conclusions, Views, Digit1, Digit2, Loop)
 	{
 		/// <inheritdoc/>
 		public override int Type => 3;

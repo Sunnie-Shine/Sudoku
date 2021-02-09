@@ -18,8 +18,9 @@ namespace Sudoku.Solving.Manual.Alses.Basic
 	/// <param name="YDigitsMask">The Y digits mask.</param>
 	/// <param name="ZDigitsMask">The Z digits mask.</param>
 	public sealed record AlsXyWingStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Als Als1, in Als Als2,
-		in Als Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask) : AlsStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, in Als Als1, in Als Als2,
+		in Als Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask
+	) : AlsStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 6.0M;

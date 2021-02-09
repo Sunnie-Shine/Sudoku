@@ -16,13 +16,14 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Candidates">All candidates.</param>
 	/// <param name="Chains">The sub-chains.</param>
 	public sealed record BugMultipleWithFcStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, IReadOnlyList<int> Candidates,
-		IReadOnlyDictionary<int, Node> Chains) : BugStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		IReadOnlyList<int> Candidates, IReadOnlyDictionary<int, Node> Chains
+	) : BugStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// The difficulty for the number of true candidates.
 		/// </summary>
-		public decimal CountDifficulty => Math.Floor((decimal)Math.Sqrt(2 * Candidates.Count + .5)) / 10;
+		public decimal CountDifficulty => (int)(Math.Sqrt(2 * Candidates.Count) + .5) / 10M;
 
 		/// <summary>
 		/// The length difficluty.

@@ -34,10 +34,10 @@ namespace Sudoku.Solving.Manual.Fishes
 	/// </list>
 	/// </param>
 	public sealed partial record ComplexFishStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, int Digit,
 		IReadOnlyList<int> BaseSets, IReadOnlyList<int> CoverSets, in Cells Exofins,
-		in Cells Endofins, bool IsFranken, bool? IsSashimi)
-		: FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
+		in Cells Endofins, bool IsFranken, bool? IsSashimi
+	) : FishStepInfo(Conclusions, Views, Digit, BaseSets, CoverSets)
 	{
 		/// <summary>
 		/// The basic difficulty rating table.

@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Cells">All cells.</param>
 	/// <param name="ExtraCell">The extra cell.</param>
 	public sealed record BugXzStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		short DigitsMask, IReadOnlyList<int> Cells, int ExtraCell) : BugStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		short DigitsMask, IReadOnlyList<int> Cells, int ExtraCell
+	) : BugStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .2M;

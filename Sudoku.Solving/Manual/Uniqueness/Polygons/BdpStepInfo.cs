@@ -13,8 +13,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 	/// <param name="Map">The cells used.</param>
 	/// <param name="DigitsMask">The digits mask.</param>
 	public abstract record BdpStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Map, short DigitsMask)
-		: UniquenessStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		in Cells Map, short DigitsMask
+	) : UniquenessStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.3M;
@@ -27,6 +28,7 @@ namespace Sudoku.Solving.Manual.Uniqueness.Polygons
 
 		/// <inheritdoc/>
 		public abstract override Technique TechniqueCode { get; }
+
 
 		/// <inheritdoc/>
 		public abstract override string ToString();

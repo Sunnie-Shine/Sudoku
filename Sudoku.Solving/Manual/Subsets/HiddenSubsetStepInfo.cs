@@ -15,11 +15,11 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="Cells">All cells used.</param>
 	/// <param name="Digits">All digits used.</param>
 	public sealed record HiddenSubsetStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, in Cells Cells, IReadOnlyList<int> Digits)
-		: SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Region, in Cells Cells, IReadOnlyList<int> Digits
+	) : SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
 #if DOUBLE_LAYERED_ASSUMPTION
-		, IHasParentNodeInfo
+	, IHasParentNodeInfo
 #endif
 	{
 		/// <inheritdoc/>

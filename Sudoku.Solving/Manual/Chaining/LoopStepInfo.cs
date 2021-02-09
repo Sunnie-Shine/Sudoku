@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Drawing;
@@ -29,7 +30,8 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="Target">The destination node that is off.</param>
 #endif
 	public sealed record LoopStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, bool XEnabled, bool YEnabled,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		bool XEnabled, bool YEnabled,
 #if DOUBLE_LAYERED_ASSUMPTION
 		in Node DestOn, in Node DestOff
 #else
@@ -46,9 +48,7 @@ namespace Sudoku.Solving.Manual.Chaining
 
 		/// <inheritdoc/>
 		public override Technique TechniqueCode =>
-			IsXCycle
-			? Technique.FishyCycle
-			: IsXyChain ? Technique.XyCycle : Technique.ContinuousNiceLoop;
+			IsXCycle ? Technique.FishyCycle : IsXyChain ? Technique.XyCycle : Technique.ContinuousNiceLoop;
 
 		/// <inheritdoc/>
 		public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining;
@@ -78,7 +78,7 @@ namespace Sudoku.Solving.Manual.Chaining
 		/// <inheritdoc/>
 		public override string ToString()
 		{
-			string chainStr = new LinkCollection(Views[0].Links!).ToString();
+			string chainStr = new LinkCollection(from pair in Views[0].Links! select pair.Value).ToString();
 			string elimStr = new ConclusionCollection(Conclusions).ToString();
 			return $"{Name}: {chainStr} => {elimStr}";
 		}

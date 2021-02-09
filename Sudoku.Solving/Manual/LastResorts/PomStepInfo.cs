@@ -11,8 +11,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// </summary>
 	/// <param name="Conclusions">All conclusions.</param>
 	/// <param name="Views">All views.</param>
-	public sealed record PomStepInfo(IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views)
-		: LastResortStepInfo(Conclusions, Views)
+	public sealed record PomStepInfo(
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views
+	) : LastResortStepInfo(Conclusions, Views)
 	{
 		/// <summary>
 		/// Indicates the digit.

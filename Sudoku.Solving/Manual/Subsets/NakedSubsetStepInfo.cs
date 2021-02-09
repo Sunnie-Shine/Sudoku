@@ -16,11 +16,11 @@ namespace Sudoku.Solving.Manual.Subsets
 	/// <param name="Digits">All digits used.</param>
 	/// <param name="IsLocked">Indicates whether the subset is locked.</param>
 	public sealed record NakedSubsetStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Region, in Cells Cells, IReadOnlyList<int> Digits, bool? IsLocked)
-		: SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Region, in Cells Cells, IReadOnlyList<int> Digits, bool? IsLocked
+	) : SubsetStepInfo(Conclusions, Views, Region, Cells, Digits)
 #if DOUBLE_LAYERED_ASSUMPTION
-		, IHasParentNodeInfo
+	, IHasParentNodeInfo
 #endif
 	{
 		/// <inheritdoc/>

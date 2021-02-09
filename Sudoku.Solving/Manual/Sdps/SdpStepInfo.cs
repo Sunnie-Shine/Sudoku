@@ -12,8 +12,8 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <param name="Views">All views.</param>
 	/// <param name="Digit">The digit used.</param>
 	public abstract record SdpStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit)
-		: StepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, int Digit
+	) : StepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public sealed override bool ShowDifficulty => base.ShowDifficulty;

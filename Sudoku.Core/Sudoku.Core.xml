@@ -4097,58 +4097,6 @@
             Indicates all symmetry types should be satisfied.
             </summary>
         </member>
-        <member name="T:Sudoku.Models.DrawingInfo">
-            <summary>
-            Encapsulates a drawing information pair for highlighting cells,
-            candidates and regions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.#ctor(System.Int64,System.Int32)">
-            <summary>
-            Initializes an instance with ID and value.
-            </summary>
-            <param name="id">The ID.</param>
-            <param name="value">The value.</param>
-        </member>
-        <member name="P:Sudoku.Models.DrawingInfo.Id">
-            <summary>
-            Indicates the ID value. The ID is the unique key corresponding to one color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Models.DrawingInfo.Value">
-            <summary>
-            Indicates the value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.Equals(Sudoku.Models.DrawingInfo@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.Deconstruct(System.Int64@,System.Int32@)">
-            <inheritdoc cref="T:Sudoku.DocComments.DeconstructMethod"/>
-            <param name="id">(<see langword="out"/> parameter) The ID.</param>
-            <param name="value">(<see langword="out"/> parameter) The value.</param>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.op_Equality(Sudoku.Models.DrawingInfo@,Sudoku.Models.DrawingInfo@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Equality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.op_Inequality(Sudoku.Models.DrawingInfo@,Sudoku.Models.DrawingInfo@)">
-            <inheritdoc cref="M:Sudoku.DocComments.Operators.op_Inequality(Sudoku.DocComments.Operators,Sudoku.DocComments.Operators)"/>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.op_Implicit(System.ValueTuple{System.Int64,System.Int32}@)~Sudoku.Models.DrawingInfo">
-            <summary>
-            Implicit cast from <see cref="T:System.ValueTuple`2"/> to <see cref="T:Sudoku.Models.DrawingInfo"/>.
-            </summary>
-            <param name="pair">(<see langword="in"/> parameter) The pair value.</param>
-        </member>
         <member name="T:Sudoku.Models.GridProgressResult">
             <summary>
             Encapsulates a progress result used for report the current state.

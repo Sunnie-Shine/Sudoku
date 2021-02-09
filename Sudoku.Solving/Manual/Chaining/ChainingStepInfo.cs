@@ -23,7 +23,7 @@ namespace Sudoku.Solving.Manual.Chaining
 	/// <param name="IsDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
 	/// <param name="Level">The dynamic searching level.</param>
 	public abstract record ChainingStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
 		bool XEnabled, bool YEnabled, bool IsNishio, bool IsMultiple, bool IsDynamic, int Level)
 		: StepInfo(Conclusions, Views)
 #if DOUBLE_LAYERED_ASSUMPTION
@@ -125,8 +125,8 @@ namespace Sudoku.Solving.Manual.Chaining
 				{
 					for (int i = 0; i < links.Count; i += 2)
 					{
-						var link = links[i];
-						if (link.StartCandidate / 9 != link.EndCandidate / 9)
+						var (_, _, _, (startCell, _, endCell, _, _)) = links[i];
+						if (startCell != endCell)
 						{
 							return false;
 						}

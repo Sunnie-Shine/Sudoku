@@ -17,11 +17,12 @@ namespace Sudoku.Solving.Manual.Uniqueness.Rects
 	/// <param name="IsAvoidable">Indicates whether the structure is an AR.</param>
 	/// <param name="AbsoluteOffset">The absolute offset that used in sorting.</param>
 	public sealed record UrType1StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset)
-		: UrStepInfo(
-			Conclusions, Views, IsAvoidable ? Technique.ArType1 : Technique.UrType1,
-			Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		int Digit1, int Digit2, int[] Cells, bool IsAvoidable, int AbsoluteOffset
+	) : UrStepInfo(
+		Conclusions, Views, IsAvoidable ? Technique.ArType1 : Technique.UrType1,
+		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset
+	)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.5M;

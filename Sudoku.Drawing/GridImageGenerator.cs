@@ -79,7 +79,7 @@ namespace Sudoku.Drawing
 		/// The return value is the same as the parameter <paramref name="bitmap"/> when
 		/// this parameter is not <see langword="null"/>.
 		/// </returns>
-		private Bitmap Paint(Bitmap? bitmap, Graphics g)
+		public Bitmap Paint(Bitmap? bitmap, Graphics g)
 		{
 			const float offset = 6F;
 

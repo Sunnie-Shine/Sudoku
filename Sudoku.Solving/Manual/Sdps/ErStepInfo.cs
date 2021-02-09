@@ -15,8 +15,9 @@ namespace Sudoku.Solving.Manual.Sdps
 	/// <param name="Block">The block that the empty rectangle lies in.</param>
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record ErStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, int Digit, int Block,
-		in ConjugatePair ConjugatePair) : SdpStepInfo(Conclusions, Views, Digit)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, int Digit, int Block,
+		in ConjugatePair ConjugatePair
+	) : SdpStepInfo(Conclusions, Views, Digit)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 4.6M;

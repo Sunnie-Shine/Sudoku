@@ -14,8 +14,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Qiu
 	/// <param name="Pattern">The pattern.</param>
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record QdpType4StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Pattern Pattern,
-		in ConjugatePair ConjugatePair) : QdpStepInfo(Conclusions, Views, Pattern)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		in Pattern Pattern, in ConjugatePair ConjugatePair
+	) : QdpStepInfo(Conclusions, Views, Pattern)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .2M;

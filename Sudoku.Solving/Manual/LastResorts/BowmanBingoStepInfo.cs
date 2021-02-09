@@ -14,8 +14,9 @@ namespace Sudoku.Solving.Manual.LastResorts
 	/// <param name="Views">All views.</param>
 	/// <param name="ContradictionSeries">Indicates all conclusions that occurs a contradict.</param>
 	public sealed record BowmanBingoStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		IReadOnlyList<Conclusion> ContradictionSeries) : LastResortStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		IReadOnlyList<Conclusion> ContradictionSeries
+	) : LastResortStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 8.0M + ContradictionSeries.Count.GetExtraDifficultyByLength();

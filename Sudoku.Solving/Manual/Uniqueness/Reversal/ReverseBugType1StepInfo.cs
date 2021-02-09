@@ -20,9 +20,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Reversal
 	/// form a deadly pattern.
 	/// </param>
 	public sealed record ReverseBugType1StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, in Cells Loop,
-		int Digit1, int Digit2, int Anchor, int AnchorLastDigit)
-		: ReverseBugStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views, in Cells Loop,
+		int Digit1, int Digit2, int Anchor, int AnchorLastDigit
+	) : ReverseBugStepInfo(Conclusions, Views, Loop, Digit1, Digit2)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 5.6M;

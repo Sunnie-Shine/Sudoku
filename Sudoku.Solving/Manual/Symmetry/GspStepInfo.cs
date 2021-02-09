@@ -5,7 +5,6 @@ using Sudoku.Data;
 using Sudoku.Data.Collections;
 using Sudoku.Data.Extensions;
 using Sudoku.Drawing;
-using Sudoku.Models;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Symmetry
@@ -21,8 +20,9 @@ namespace Sudoku.Solving.Manual.Symmetry
 	/// contains multiple different symmetry types.
 	/// </param>
 	public sealed record GspStepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views, SymmetryType SymmetryType,
-		int?[]? MappingTable) : SymmetryStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		SymmetryType SymmetryType, int?[]? MappingTable
+	) : SymmetryStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => 7.0M;
@@ -65,6 +65,7 @@ namespace Sudoku.Solving.Manual.Symmetry
 		}
 
 
+#nullable disable warnings
 		/// <summary>
 		/// Merge two information, and reserve all conclusions from them two.
 		/// </summary>
@@ -81,27 +82,24 @@ namespace Sudoku.Solving.Manual.Symmetry
 				}
 				case (not null, not null):
 				{
-#nullable disable warnings
 					var results = new List<Conclusion>(left.Conclusions);
 					results.AddRange(right.Conclusions);
 
-					var candidateOffsets = new List<DrawingInfo>(left.Views[0].Candidates!);
+					var candidateOffsets = new List<PaintingPair<int>>(left.Views[0].Candidates!);
 					candidateOffsets.AddRange(right.Views[0].Candidates!);
-#nullable restore warnings
 					return new(
 						results,
-						new View[] { new() { Candidates = candidateOffsets } },
+						new PresentationData[] { new() { Candidates = candidateOffsets } },
 						left.SymmetryType | right.SymmetryType,
 						null
 					);
 				}
 				default:
 				{
-#nullable disable warnings
 					return new(left ?? right);
-#nullable restore warnings
 				}
 			}
 		}
+#nullable restore warnings
 	}
 }

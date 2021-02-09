@@ -15,9 +15,9 @@ namespace Sudoku.Solving.Manual.Uniqueness.Bugs
 	/// <param name="Cells">All cells.</param>
 	/// <param name="ConjugatePair">The conjugate pair.</param>
 	public sealed record BugType4StepInfo(
-		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<View> Views,
-		IReadOnlyList<int> Digits, IReadOnlyList<int> Cells, in ConjugatePair ConjugatePair)
-		: BugStepInfo(Conclusions, Views)
+		IReadOnlyList<Conclusion> Conclusions, IReadOnlyList<PresentationData> Views,
+		IReadOnlyList<int> Digits, IReadOnlyList<int> Cells, in ConjugatePair ConjugatePair
+	) : BugStepInfo(Conclusions, Views)
 	{
 		/// <inheritdoc/>
 		public override decimal Difficulty => base.Difficulty + .1M;
